@@ -1,8 +1,8 @@
 package com.cesor.android.loginapirest
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.android.volley.toolbox.JsonObjectRequest
 import com.cesor.android.loginapirest.databinding.ActivityMainBinding
@@ -24,15 +24,20 @@ class MainActivity : AppCompatActivity() {
         mBinding.btnLogin.setOnClickListener {
             login()
         }
+        mBinding.btnProfile.setOnClickListener {
+            startActivity(Intent(this, ProfileActivity::class.java))
+        }
     }
 
     private fun login() {
         val typeMethod = if (mBinding.swType.isChecked) Constants.LOGIN_PATH else Constants.REGISTER_PATH
+
         val url = Constants.BASE_URL + Constants.API_PATH + typeMethod
 
-        val jsonParams = JSONObject()
         val email = mBinding.etEmail.text.toString().trim()
         val password = mBinding.etPassword.text.toString().trim()
+
+        val jsonParams = JSONObject()
         if (email.isNotEmpty()){
             jsonParams.put(Constants.EMAIL_PARAM, email)
         }
@@ -45,7 +50,6 @@ class MainActivity : AppCompatActivity() {
             val token = response.optString(Constants.TOKEN_PROPERTY, Constants.ERROR_VALUE)
             val result = if (id.equals(Constants.ERROR_VALUE)) "${Constants.TOKEN_PROPERTY}: $token"
                         else "${Constants.ID_PROPERTY}: $id, ${Constants.TOKEN_PROPERTY}: $token"
-            Log.i("result",result )
 
             updateUI(result)
             },{

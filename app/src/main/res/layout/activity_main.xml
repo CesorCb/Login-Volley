@@ -74,4 +74,16 @@
             android:layout_height="wrap_content"
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_profile"
+        android:layout_marginBottom="@dimen/common_padding_default"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

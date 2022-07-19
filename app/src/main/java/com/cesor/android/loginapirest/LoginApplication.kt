@@ -14,6 +14,6 @@ class LoginApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         //Volley
-        reqResAPI = ReqResAPI(this)
+        reqResAPI = ReqResAPI.getInstance(this)
     }
 }
